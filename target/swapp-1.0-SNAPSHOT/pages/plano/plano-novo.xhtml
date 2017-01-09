@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition template="/index.xhtml">
+		<ui:define name="content">
+			<h:form id="planForm">
+				<p:panel style="text-align:center; font-size:25px;">
+					<p:outputLabel value="Plano de Vôo"/>
+				</p:panel>
+				
+				<p:accordionPanel id="planFlight">
+        			<p:tab title="Planeta">
+					    <p:dataTable id="planetDatatable" var="planet" value="#{planoVooController.planetas}" selectionMode="single" selection="#{planoVooController.planeta}" rowKey="#{planet.nome}" scrollable="true" scrollHeight="150">
+					        <p:column headerText="Planeta Destino">
+					            <h:outputText value="#{planet.nome}" />
+					        </p:column>
+					        <p:column headerText="Clima">
+					            <h:outputText value="#{planet.clima}">
+					            	<f:converter converterId="climaConverter"/>
+					            </h:outputText>
+					        </p:column>
+					    </p:dataTable>
+					</p:tab>
+       				<p:tab title="Nave">
+						<p:dataTable id="shipDatatable" var="ship" value="#{planoVooController.naves}" selectionMode="single" selection="#{planoVooController.nave}" rowKey="#{ship.nome}" scrollable="true" scrollHeight="150">
+					        <p:column headerText="Nave">
+					            <h:outputText value="#{ship.nome}" />
+					        </p:column>
+					        <p:column headerText="Modelo">
+					            <h:outputText value="#{ship.modelo}" />
+					        </p:column>
+					        <p:column headerText="Capacidade">
+					            <h:outputText value="#{ship.passageiros}">
+					            	<f:converter converterId="passageiroConverter"/>
+					            </h:outputText>
+					        </p:column>
+					    </p:dataTable>
+					</p:tab>
+					
+					<p:tab title="Tripulantes">
+						<p:inputText value="#{planoVooController.tripulacaoTotal}">
+							<f:converter converterId="tripulacaoConverter"/>
+						</p:inputText>
+						<p:commandButton value="Criar" action="#{planoVooController.criar}" update="planFlight"/>
+						<p:growl id="messageGrowl" showDetail="true" sticky="false" />
+					</p:tab>
+					
+					<p:tab title="Planos de Vôo">
+						<p:dataTable id="flightPlans" var="flight" value="#{planoVooController.planos}" rows="5" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+					        <p:column headerText="Planeta Destino">
+					            <h:outputText value="#{flight.planeta.nome}" />
+					        </p:column>
+					        <p:column headerText="Nave">
+					            <h:outputText value="#{flight.nave.nome}" />
+					        </p:column>
+					        <p:column headerText="Tripulantes">
+					            <h:outputText value="#{flight.tripulacaoTotal}">
+					            	<f:converter converterId="passageiroConverter"/>
+					            </h:outputText>
+					        </p:column>
+					    </p:dataTable>
+					</p:tab>					
+					
+				</p:accordionPanel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body> 
+</html>

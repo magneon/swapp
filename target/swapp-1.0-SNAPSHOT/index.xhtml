@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<!-- 
+		<h:outputScript name="jquery-ui.js" library="js" />
+
+		<h:outputScript name="primeui.min.js" library="primefaces" />
+		<h:outputScript name="plugins/mustache.min.js" library="primefaces" />
+		
+		<h:outputStylesheet name="primeui.min.css" library="primefaces"/>
+		<h:outputStylesheet name="font-awesome.css" library="css"/>
+		<h:outputStylesheet name="jquery-ui.css" library="css"/>
+		-->
+	</h:head>
+      
+	<h:body>
+		<p:dialog id="modal" modal="true" widgetVar="modal" closable="false" resizable="false" responsive="true" draggable="false" dynamic="true">
+			<h:graphicImage value="resources/primefaces/images/loadingbar.gif" />
+	    </p:dialog>
+	
+		<p:layout fullPage="true" id="layout">
+			<p:layoutUnit position="north" style="max-height: 230px; text-align: center;">
+				<ui:insert name="header">
+					<ui:include src="header-basic.xhtml" />
+				</ui:insert>
+			</p:layoutUnit>
+			
+			<p:layoutUnit position="west" style="min-width: 100px;" resizable="true" maxSize="500" minSize="50">
+				<ui:insert name="menu">
+					<ui:include src="menu-basic.xhtml" />
+				</ui:insert>
+			</p:layoutUnit>
+			
+			<p:layoutUnit position="center" id="center">
+				<ui:insert name="content">
+					<ui:include src="content-basic.xhtml" />
+				</ui:insert>
+			</p:layoutUnit>
+			
+			<p:layoutUnit position="south">
+				<ui:insert name="footer">
+					<ui:include src="footer-basic.xhtml" />
+				</ui:insert>
+			</p:layoutUnit>
+		</p:layout>
+	</h:body> 
+
+</html>

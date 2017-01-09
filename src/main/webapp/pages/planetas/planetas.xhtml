@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	
+<h:body>
+	<ui:composition template="/index.xhtml">
+		<ui:define name="content">
+			<p:panel style="text-align:center; font-size:25px;">
+				<p:outputLabel value="Planetas"/>
+			</p:panel>
+			
+			<h:form id="planetaForm">
+				<p:remoteCommand name="updateDatatable" oncomplete="PF('modal').hide();" update="planetaForm"/>
+				<p:panel style="text-align: right;">
+					<p:commandButton id="planetSearch" action="#{planetaController.listaPlanetas()}" onclick="PF('modal').show(); setTimeout(function(){updateDatatable();}, 5000);" value="Pesquisar Todos"/>
+				</p:panel>
+				<p:dataTable id="planetList" var="planeta" value="#{planetaController.planetas}" selectionMode="single" selection="#{planetaController.planeta}" rowKey="#{planeta.nome}">
+			        <f:facet name="header">
+			            Planetas
+			        </f:facet>
+			        <p:column headerText="Nome">
+			            <h:outputText value="#{planeta.nome}" />
+			        </p:column>
+			        <p:column headerText="Diametro">
+			            <h:outputText value="#{planeta.diametro}">
+			            	<f:converter converterId="diametroConverter"/>
+			            </h:outputText>
+			        </p:column>
+			        <p:column headerText="Clima">
+			            <h:outputText value="#{planeta.clima}">
+			            	<f:converter converterId="climaConverter"/>
+			            </h:outputText>
+			        </p:column>
+			        <p:column headerText="Terreno">
+			            <h:outputText value="#{planeta.terreno}">
+			            	<f:converter converterId="terrenoConverter"/>
+			            </h:outputText>
+			        </p:column>
+			        <p:column headerText="População">
+			            <h:outputText value="#{planeta.populacao}">
+			            	<f:converter converterId="populacaoConverter"/>
+			            </h:outputText>
+			        </p:column>
+			    </p:dataTable>
+			    
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body> 
+</html>

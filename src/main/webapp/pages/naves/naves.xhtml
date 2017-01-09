@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition template="/index.xhtml">
+		<ui:define name="content">
+			<p:panel style="text-align:center; font-size:25px;">
+				<p:outputLabel value="Naves"/>
+			</p:panel>
+			
+			<h:form id="naveForm">
+				<p:remoteCommand name="updateDatatable" oncomplete="PF('modal').hide();" update="navePanel"/>
+				<p:panel style="text-align: right;">
+					<p:commandButton value="Pesquisar Todos" actionListener="#{naveController.listaNaves()}" onclick="PF('modal').show(); setTimeout(function(){updateDatatable();}, 5000);"/>
+				</p:panel>
+
+				<p:panel id="navePanel">
+					<p:dataTable id="navesList" var="ship" value="#{naveController.naves}" selectionMode="single" selection="#{naveController.nave}" rowKey="#{ship.nome}">
+				        <f:facet name="header">
+				            Naves
+				        </f:facet>
+				        <p:column headerText="Nome">
+				            <h:outputText value="#{ship.nome}" />
+				        </p:column>
+				        <p:column headerText="Modelo">
+				            <h:outputText value="#{ship.modelo}" />
+				        </p:column>
+				        <p:column headerText="Passageiros">
+				            <h:outputText value="#{ship.passageiros}">
+				            	<f:converter converterId="passageiroConverter"/>
+				            </h:outputText>
+				        </p:column>
+				    </p:dataTable>
+			    </p:panel>
+			    
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body> 
+</html>

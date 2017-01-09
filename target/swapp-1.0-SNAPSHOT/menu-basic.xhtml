@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	
+<body>
+	<ui:composition>
+		<h:form>
+			
+			<p:panelMenu style="width:300px">
+		        <p:submenu label="Naves">
+		            <p:menuitem value="Consulta" action="#{menu.listaNaves()}" icon="ui-icon-disk" update="center" />
+		        </p:submenu>
+		        <p:submenu label="Planetas">
+		           	<p:menuitem value="Consulta" action="#{menu.listaPlanetas()}" icon="ui-icon-disk" ajax="true" update="center" />
+		        </p:submenu>
+		        <p:submenu label="Tripulação">
+		           	<p:menuitem value="Consulta" action="#{menu.listaTripulacao()}" icon="ui-icon-disk" ajax="true" update="center" />
+		        </p:submenu>
+		        <p:submenu label="Plano de Vôo">
+		           	<p:menuitem value="Criação de Plano de Vôo" action="#{menu.novoPlanoDeVoo()}" icon="ui-icon-disk" ajax="true" update="center" />
+		        </p:submenu>
+		    </p:panelMenu>
+		    
+		</h:form>
+	</ui:composition>
+</body> 
+</html>

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.com.mootit.controllers.test.PlanoVooTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 30.241 sec
